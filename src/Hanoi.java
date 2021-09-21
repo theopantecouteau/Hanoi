@@ -1,18 +1,18 @@
-import java.util.ArrayList;
-
 public class Hanoi {
 
-    public static void resoudreAux(int n, int i, int j){
+    public static int resoudreAux(int n, int i, int j){
         int k=6-i-j;
-        int a=0;
+        int x,y;
         if (n==1){
             System.out.println(i + " vers " + j);
+            return 1;
         }
         else{
-            resoudreAux(n-1,i,k);
+            x = resoudreAux(n-1,i,k);
             resoudreAux(1,i,j);
-            resoudreAux(n-1,k,j);
+            y = resoudreAux(n-1,k,j);
         }
+        return x+y+1;
     }
 
     public static void resoudre (int n){
@@ -24,11 +24,11 @@ public class Hanoi {
     //question bonus : il faut rajouter un cas de base pour n==0 et afficher " ".
 
     public static int calcule(int n){
-        int a=resoudre(n);
+        int a=resoudreAux(n,1,3);
         return a;
     }
 
     public static void main(String[] args) {
-        calcule(3);
+        System.out.println(calcule(3));
     }
 }
